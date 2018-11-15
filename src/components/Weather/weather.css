@@ -1,0 +1,60 @@
+.Weather {
+    margin-left: 2em;
+    border-radius: 8px;
+    box-sizing: border-box;
+    width: 80%;
+    margin: 3em auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.Weather__info {
+    padding: 2em;
+    position: relative;
+}
+
+.weather__location h1, 
+.weather__description {
+    font-size: 4vw;
+}
+
+.weather__description {
+    margin-top: .8em;
+}
+
+.weather__location {
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin-bottom: .5em;
+}
+
+.weather__temperature {
+    font-size: 16vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    margin-top: .7em;
+}
+
+.weather__ranges {
+    margin-top: 1em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.weather__maxtemp,
+.weather__mintemp {
+    flex-basis: 50%;
+}
+
+.weather__description {
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-weight: bold;
+}
+

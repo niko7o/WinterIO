@@ -1,14 +1,41 @@
 import React, { Component } from 'react';
+import './weather.css';
 
 class Weather extends Component {
     render() {
         return (
-            <div className="Weather_info">
-                { this.props.country && this.props.city && <p className="weather__key">Location: <span className="weather__value">  {this.props.city}, {this.props.country}</span></p> }
-                { this.props.temperature && <p className="weather__key">Temperature: <span className="weather__value">  {this.props.temperature}</span></p> }
-                { this.props.humidity && <p className="weather__key">Humidity: <span className="weather__value">  {this.props.humidity}</span></p> }
-                { this.props.description && <p className="weather__key">Conditions: <span className="weather__value">  {this.props.description}</span>  </p> }
-                { this.props.error && <p className="weather__error">{this.props.error}</p> }
+            <div className="Weather">
+                <div className="Weather__info">
+                { 
+                    this.props.country && this.props.city && 
+                    <div className="weather__location">
+                        <h1>{this.props.city}</h1>
+                    </div> 
+                }
+                { 
+                    this.props.description && 
+                    <div className="weather__description">
+                        <span>{this.props.description}</span>  
+                    </div>
+                }
+                {
+                    this.props.temperature &&
+                    <div className="weather__temperature">
+                        <span>{this.props.temperature}º</span>
+                    </div>
+                }
+                { 
+                    this.props.maxtemp && this.props.mintemp &&
+                    <div className="weather__ranges">
+                        <span className="weather_mintemp">{this.props.mintemp}º</span>
+                        <span className="weather_maxtemp">{this.props.maxtemp}º</span>
+                    </div>
+                }
+                { 
+                    this.props.error && 
+                    <p className="weather__error">{this.props.error}</p> 
+                }
+                </div>
             </div>
         )
     }
