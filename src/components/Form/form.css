@@ -1,7 +1,7 @@
 .Form {
     width: 80%;
     background-color: white;
-    padding: 1.4em;
+    padding: .6em;
     border-radius: 8px;
     box-sizing: border-box;
 }
@@ -13,7 +13,7 @@
     box-sizing: border-box;
     margin-bottom: 1em;
     color: var(--primary);
-    font-size: 4.4vw;
+    font-size: 4vw;
     border: 0;
     border-bottom: 1px solid lightgray;
     -webkit-transition: .35s ease;
@@ -37,7 +37,7 @@
     font-family: inherit;
     letter-spacing: 1px;
     margin-top: 1em;
-    margin-bottom: -3.4em;
+    margin-bottom: -2.5em;
     outline: none;
     padding: 1.2em 2em;
     transition: .25s ease;
