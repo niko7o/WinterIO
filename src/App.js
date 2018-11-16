@@ -15,7 +15,6 @@ class App extends Component {
     humidity: undefined,
     description: undefined,
     error: undefined,
-    firstSearchDone: undefined
   }
 
   getWeather = async(e) => {
@@ -35,15 +34,13 @@ class App extends Component {
         humidity: res.main.humidity,
         description: res.weather[0].description,
         error: "",
-        firstSearchDone: true
       })
+      document.getElementById('weatherForm').reset();
     } else {
       this.setState({ 
         error: "Please input search values..." 
       })
     }
-
-    console.log(this.state)
   }
 
   render() {

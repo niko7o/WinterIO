@@ -1,9 +1,11 @@
 .Form {
+    order: 1;
     width: 80%;
     background-color: white;
     padding: .6em;
     border-radius: 8px;
     box-sizing: border-box;
+    transform: .35s ease;
 }
 
 .Form__input {
