@@ -20,28 +20,30 @@ class App extends Component {
 
     const city = e.target.elements.city.value;
     const country = e.target.elements.country.value;
-    axios.get(`http://api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=${API_KEY}&units=metric`)
-    .then(response => {
-      const weather = response.data;
-      console.log(weather)
-    })
-    .catch(err => {
-      console.error(err);
-    })
-    
-    
-    // if (city && country) {
-    //   this.setState({
-    //     temperature: response.main.temp,
-    //     city: response.name,
-    //     country: response.sys.country,
-    //     humidity: response.main.humidity,
-    //     description: response.weather[0].description,
-    //     error: ""
-    //   })
-    // } else {
-    //   this.setState({ error: "Please input search values..." })
-    // }
+
+    if(city && country) {
+      axios.get(`http://api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=${API_KEY}&units=metric`)
+        .then(response => {
+          const weather = response.data;
+          console.log(weather)
+          this.setState({
+            temperature: weather.main.temp,
+            city: weather.name,
+            country: weather.sys.country,
+            humidity: weather.main.humidity,
+            description: weather.weather[0].description,
+            code: weather.weather[0],
+            error: ""
+          })
+        })
+        .catch(err => {
+          console.error(err);
+        })
+    } else {
+      this.setState({
+        error: "Please fill both inputs before searching for the weather.."
+      })
+    }
   }
 
   render() {
