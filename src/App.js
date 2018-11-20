@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import Form from './components/Form/form';
 import Weather from './components/Weather/weather';
 
@@ -14,27 +15,33 @@ class App extends Component {
     error: undefined
   }
 
-  getWeather = async(e) => {
+  getWeather = (e) => {
     e.preventDefault();
+
     const city = e.target.elements.city.value;
     const country = e.target.elements.country.value;
-    const api_call = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=${API_KEY}&units=metric`);
-    const response = await api_call.json();
+    axios.get(`http://api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=${API_KEY}&units=metric`)
+    .then(response => {
+      const weather = response.data;
+      console.log(weather)
+    })
+    .catch(err => {
+      console.error(err);
+    })
     
-    console.log(response);
     
-    if (city && country) {
-      this.setState({
-        temperature: response.main.temp,
-        city: response.name,
-        country: response.sys.country,
-        humidity: response.main.humidity,
-        description: response.weather[0].description,
-        error: ""
-      })
-    } else {
-      this.setState({ error: "Please input search values..." })
-    }
+    // if (city && country) {
+    //   this.setState({
+    //     temperature: response.main.temp,
+    //     city: response.name,
+    //     country: response.sys.country,
+    //     humidity: response.main.humidity,
+    //     description: response.weather[0].description,
+    //     error: ""
+    //   })
+    // } else {
+    //   this.setState({ error: "Please input search values..." })
+    // }
   }
 
   render() {
