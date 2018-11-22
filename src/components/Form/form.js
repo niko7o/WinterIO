@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './form.css';
+import './styles.css';
 
 class Form extends Component {
     constructor(props) {
@@ -58,11 +59,7 @@ class Form extends Component {
                     required
                 />
 
-                <button 
-                    onClick={this.handleSubmit}
-                    type="submit"
-                    className="Form__submit"
-                >{this.state.buttonText}</button>
+                <button onClick={this.handleSubmit} type="submit" className="Form__submit">{this.state.buttonText}</button>
             </form>
         )
     }
