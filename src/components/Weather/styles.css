@@ -1,0 +1,17 @@
+.Weather_info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 3em;
+    width: 90%;
+    height: 100%;
+    margin: 3em auto;
+    box-sizing: border-box;
+    line-height: 23px;
+    font-family: 'stolzlbold', sans-serif;
+}
+
+.weather__value {
+    font-size: 22vw;
+}
