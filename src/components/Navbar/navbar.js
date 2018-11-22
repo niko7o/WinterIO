@@ -7,7 +7,7 @@ class Navbar extends Component {
             <div className="Navbar">
                 <div className="Navbar__tab active">Current</div>
                 <div className="Navbar__tab">Forecast</div>
-                <div className="Navbar__tab">Soon</div>
+                <div className="Navbar__tab">Find me</div>
             </div>
         )
     }

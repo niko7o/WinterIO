@@ -19,6 +19,7 @@ class App extends Component {
     humidity: undefined,
     description: undefined,
     error: undefined,
+    loaded: false
   }
 
   getWeather = (e) => {
@@ -39,11 +40,14 @@ class App extends Component {
             humidity: weather.main.humidity,
             description: weather.weather[0].description,
             code: weather.weather[0],
-            error: ""
+            error: "",
+            loaded: true
           })
         })
         .catch(err => {
-          console.error(err);
+          this.setState({
+            error: 'Weather not found'
+          })
         })
     } else {
       this.setState({
@@ -55,19 +59,20 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Form loadWeather={this.getWeather} />
-        <Weather 
-          temperature={this.state.temperature}
-          maxtemp={this.state.maxTemp}
-          mintemp={this.state.minTemp}
-          city={this.state.city}
-          country={this.state.country}
-          humidity={this.state.humidity}
-          description={this.state.description}
-          error={this.state.error}
-          searched={this.state.firstSearchDone}
-        />
-        <Navbar/>
+          <Form loadWeather={this.getWeather} />
+          <Weather 
+            temperature={this.state.temperature}
+            maxtemp={this.state.maxTemp}
+            mintemp={this.state.minTemp}
+            city={this.state.city}
+            country={this.state.country}
+            humidity={this.state.humidity}
+            description={this.state.description}
+            code={this.state.code}
+            error={this.state.error}
+            searched={this.state.firstSearchDone}
+          />
+          <Navbar/>
       </div>
     )
   }

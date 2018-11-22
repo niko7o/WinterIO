@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import './weather.css';
-import './styles.css';
 
 class Weather extends Component {
-
     render() {
         return (
             <div className={"Weather" + (this.props.searched ? " found" : '')}>

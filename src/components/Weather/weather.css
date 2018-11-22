@@ -1,5 +1,5 @@
 .Weather {
-    opacity: 0;
+    opacity: 1;
     order: 2;
     height: 0vh;
     background-color: orange;
@@ -18,7 +18,7 @@
 
 .Weather.found {
     opacity: 1;
-    height: 40vh;
+    height: 50vh;
 }
 
 .Weather__info {
@@ -29,7 +29,7 @@
 
 .weather__location h1, 
 .weather__description {
-    font-size: 4vw;
+    font-size: 5vw;
 }
 
 .weather__description {

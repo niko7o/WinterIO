@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './form.css';
-import './styles.css';
 
 class Form extends Component {
     constructor(props) {
@@ -8,12 +7,12 @@ class Form extends Component {
         this.state = {
             city: '',
             country: '',
-            visible: true,
             submitted: false,
         }
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleCityChange = this.handleCityChange.bind(this);
         this.handleCountryChange = this.handleCountryChange.bind(this);
+        this.resetForm = this.resetForm.bind(this);
     }
 
     handleCountryChange(event) {
@@ -28,12 +27,20 @@ class Form extends Component {
         })
     }
 
+    resetForm() {
+        this.setState({
+            city: '',
+            country: ''
+        })
+    }
+
     handleSubmit(event) {
         this.setState({
             submitted: true,
             city: '',
             country: '',
         })
+        this.resetForm();
     }
     
     render() {
@@ -43,9 +50,8 @@ class Form extends Component {
                     className="Form__input"
                     type="text"
                     name="city"
-                    placeholder="City..."
+                    placeholder={(this.state.submitted ? 'Another city..' : 'City..')}
                     onChange={this.handleCityChange}
-                    required
                 />
 
                 <input 
@@ -54,7 +60,6 @@ class Form extends Component {
                     name="country"
                     placeholder="Country..."
                     onChange={this.handleCountryChange}
-                    required
                 />
 
                 <button onClick={this.handleSubmit} type="submit" className="Form__submit">
