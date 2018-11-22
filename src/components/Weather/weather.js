@@ -3,9 +3,10 @@ import './weather.css';
 import './styles.css';
 
 class Weather extends Component {
+
     render() {
         return (
-            <div className="Weather">
+            <div className={"Weather" + (this.props.searched ? " found" : '')}>
                 <div className="Weather__info">
                 { 
                     this.props.country && this.props.city && 

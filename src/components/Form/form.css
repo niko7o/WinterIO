@@ -5,7 +5,8 @@
     padding: .6em;
     border-radius: 8px;
     box-sizing: border-box;
-    transform: .35s ease;
+    transition-delay: .85s;
+    transition: 1s ease;
 }
 
 .Form__input {

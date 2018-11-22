@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+
 import Form from './components/Form/form';
 import Weather from './components/Weather/weather';
+import Navbar from './components/Navbar/navbar';
+
 import './styles.css';
 
 const API_KEY = "8d2de98e089f1c28e1a22fc19a24ef04";
@@ -64,6 +67,7 @@ class App extends Component {
           error={this.state.error}
           searched={this.state.firstSearchDone}
         />
+        <Navbar/>
       </div>
     )
   }

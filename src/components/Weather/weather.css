@@ -1,5 +1,8 @@
 .Weather {
+    opacity: 0;
     order: 2;
+    height: 0vh;
+    background-color: orange;
     margin-left: 2em;
     border-radius: 8px;
     box-sizing: border-box;
@@ -10,7 +13,12 @@
     justify-content: center;
     align-items: center;
     text-align: center;
-    transition: .35s ease;
+    transition: .55s ease;
+}
+
+.Weather.found {
+    opacity: 1;
+    height: 40vh;
 }
 
 .Weather__info {

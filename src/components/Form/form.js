@@ -10,7 +10,6 @@ class Form extends Component {
             country: '',
             visible: true,
             submitted: false,
-            buttonText: "What's the weather?"
         }
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleCityChange = this.handleCityChange.bind(this);
@@ -34,7 +33,6 @@ class Form extends Component {
             submitted: true,
             city: '',
             country: '',
-            buttonText: "Search another place"
         })
     }
     
@@ -59,7 +57,9 @@ class Form extends Component {
                     required
                 />
 
-                <button onClick={this.handleSubmit} type="submit" className="Form__submit">{this.state.buttonText}</button>
+                <button onClick={this.handleSubmit} type="submit" className="Form__submit">
+                    {(this.state.submitted ? "Find another place" : 'Look up the weather')}
+                </button>
             </form>
         )
     }
