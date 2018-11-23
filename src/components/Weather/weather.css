@@ -1,8 +1,7 @@
 .Weather {
-    opacity: 1;
+    opacity: 0;
     order: 2;
     height: 0vh;
-    background-color: orange;
     margin-left: 2em;
     border-radius: 8px;
     box-sizing: border-box;

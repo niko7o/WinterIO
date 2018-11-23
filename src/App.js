@@ -19,12 +19,18 @@ class App extends Component {
     humidity: undefined,
     description: undefined,
     error: undefined,
-    loaded: false
+    loaded: false,
+    searched: false
+  }
+
+  handleFormClick = (e) => {
+    this.setState({
+      searched: true
+    })
   }
 
   getWeather = (e) => {
     e.preventDefault();
-
     const city = e.target.elements.city.value;
     const country = e.target.elements.country.value;
 
@@ -32,7 +38,6 @@ class App extends Component {
       axios.get(`http://api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=${API_KEY}&units=metric`)
         .then(response => {
           const weather = response.data;
-          console.log(weather)
           this.setState({
             temperature: weather.main.temp,
             city: weather.name,
@@ -59,8 +64,11 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-          <Form loadWeather={this.getWeather} />
-          <Weather 
+          <Form 
+            loadWeather={this.getWeather} 
+            handleFormClick={this.handleFormClick}
+          />
+          <Weather
             temperature={this.state.temperature}
             maxtemp={this.state.maxTemp}
             mintemp={this.state.minTemp}
@@ -70,7 +78,8 @@ class App extends Component {
             description={this.state.description}
             code={this.state.code}
             error={this.state.error}
-            searched={this.state.firstSearchDone}
+            handleFormClick={this.handleFormClick}
+            searched={this.state.searched}
           />
           <Navbar/>
       </div>

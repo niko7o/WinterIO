@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 import './weather.css';
 
 class Weather extends Component {
+    constructor(props) {
+        super();
+    }
+
     render() {
         return (
             <div className={"Weather" + (this.props.searched ? " found" : '')}>
@@ -32,8 +36,9 @@ class Weather extends Component {
                     </div>
                 }
                 { 
+                    /* Refactor into an Error component in the future */
                     this.props.error && 
-                    <p className="weather__error">{this.props.error}</p> 
+                    <p className="weather__error">{this.props.error}</p>
                 }
                 </div>
             </div>
