@@ -41,6 +41,8 @@ class App extends Component {
           const weather = response.data;
           this.setState({
             temperature: weather.main.temp,
+            maxTemp: weather.main.temp_max,
+            minTemp: weather.main.temp_min,
             city: weather.name,
             country: weather.sys.country,
             humidity: weather.main.humidity,
@@ -49,7 +51,7 @@ class App extends Component {
             error: "",
             loaded: true
           })
-          console.log(this.state)
+          console.log(response)
         })
         .catch(err => {
           this.setState({
