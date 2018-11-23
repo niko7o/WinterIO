@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import './weather.css';
 
+const Sun = () => <img className="Weather_sun floating" src="./sun.png" alt="Sun"/>;
+
 class Weather extends Component {
     constructor(props) {
         super();
@@ -27,6 +29,9 @@ class Weather extends Component {
                     <div className="weather__temperature">
                         <span>{this.props.temperature}º</span>
                     </div>
+                }
+                {
+                    <Sun></Sun>
                 }
                 { 
                     this.props.maxtemp && this.props.mintemp &&

@@ -15,6 +15,11 @@
     transition: .55s ease;
 }
 
+.Weather_sun {
+    width: 20%;
+    margin-top: 2em;
+}
+
 .Weather.found {
     opacity: 1;
     height: 50vh;
@@ -72,4 +77,14 @@
     text-transform: uppercase;
     letter-spacing: 3px;
     font-weight: bold;
+}
+
+.floating {
+    animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+	0% { transform: translatey(0px) }
+	50% { transform: translatey(-20px) }
+	100% { transform: translatey(0px) }
 }

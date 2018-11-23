@@ -29,19 +29,17 @@ class Form extends Component {
     }
 
     resetForm() {
-        this.setState({
-            city: '',
-            country: ''
-        })
+        let city = document.querySelector('input[name="city"]');
+        let country = document.querySelector('input[name="country"]');
+        city.value = '';
+        country.value = '';
     }
 
     handleSubmit(event) {
-        this.setState({
-            submitted: true,
-            city: '',
-            country: '',
-        })
-        this.resetForm();
+        this.props.handleFormClick();
+        setTimeout(() => {
+            this.resetForm();
+        }, 100);
     }
     
     render() {
@@ -63,7 +61,7 @@ class Form extends Component {
                     onChange={this.handleCountryChange}
                 />
 
-                <button onClick={this.props.handleFormClick} type="submit" className="Form__submit">
+                <button onClick={this.handleSubmit} type="submit" className="Form__submit">
                     {(this.state.submitted ? "Find another place" : 'Look up the weather')}
                 </button>
             </form>

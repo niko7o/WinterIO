@@ -18,6 +18,7 @@ class App extends Component {
     country: undefined,
     humidity: undefined,
     description: undefined,
+    code: undefined,
     error: undefined,
     loaded: false,
     searched: false
@@ -48,6 +49,7 @@ class App extends Component {
             error: "",
             loaded: true
           })
+          console.log(this.state)
         })
         .catch(err => {
           this.setState({
@@ -78,7 +80,6 @@ class App extends Component {
             description={this.state.description}
             code={this.state.code}
             error={this.state.error}
-            handleFormClick={this.handleFormClick}
             searched={this.state.searched}
           />
           <Navbar/>
