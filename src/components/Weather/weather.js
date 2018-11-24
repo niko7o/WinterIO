@@ -1,7 +1,17 @@
 import React, { Component } from 'react';
-import './weather.css';
+import './styles.css';
 
-const Sun = () => <img className="Weather_sun floating" src="./sun.png" alt="Sun"/>;
+const Sun = () => 
+    <img className="Weather_sun floating" src="./sun.png" alt="Sun"/>;
+
+/*
+ * TO-DO: refactor stateless components to object literals
+ */
+const drawings = {
+    sun: '<img className="Weather_sun floating" src="./sun.png" alt="Sun"/>',
+    clouds: '',
+    rain: ''
+}
 
 class Weather extends Component {
     constructor(props) {
@@ -41,7 +51,7 @@ class Weather extends Component {
                     </div>
                 }
                 { 
-                    /* Refactor into an Error component in the future */
+                    /* TO-DO: refactor into an Error component in the future */
                     this.props.error && 
                     <p className="weather__error">{this.props.error}</p>
                 }

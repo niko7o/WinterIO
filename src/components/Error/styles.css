@@ -1,0 +1,8 @@
+.Notification {
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+    position: absolute;
+    bottom: 10%;
+    left: 0;
+}

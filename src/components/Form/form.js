@@ -59,7 +59,10 @@ class Form extends Component {
                     onChange={this.handleCountryChange}
                 />
 
-                <button onClick={this.handleOnClickSubmit} type="submit" className="Form__submit">
+                <button 
+                    onClick={this.handleOnClickSubmit} 
+                    type="submit" 
+                    className="Form__submit">
                     {(this.state.submitted ? "Find another place" : 'Look up the weather')}
                 </button>
             </form>
