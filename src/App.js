@@ -6,8 +6,10 @@ import Weather from './components/Weather/weather';
 import Navbar from './components/Navbar/navbar';
 
 import './styles.css';
+import * as api from './constants/apiConstants';
 
-const API_KEY = "8d2de98e089f1c28e1a22fc19a24ef04";
+const buildApiRequestUrl = (city, country) => 
+  `${api.BASE_URL}?q=${city},${country}&appid=${api.APP_ID}&${api.OPTIONS}`;
 
 class App extends Component {
   state = {
@@ -18,10 +20,10 @@ class App extends Component {
     country: undefined,
     humidity: undefined,
     description: undefined,
-    code: undefined,
-    error: undefined,
-    loaded: false,
-    searched: false
+    code: undefined, // Will determine which cute illustration to mount
+    error: undefined, // For error handling component
+    loaded: false, // Defines preloader mounting/unmounting
+    searched: false // For text control on Form component
   }
 
   handleFormClick = (e) => {
@@ -30,13 +32,13 @@ class App extends Component {
     })
   }
 
-  getWeather = (e) => {
-    e.preventDefault();
-    const city = e.target.elements.city.value;
-    const country = e.target.elements.country.value;
+  getWeather = (form) => {
+    const city = form.city;
+    const country = form.country;
+    const apiRequestUrl = buildApiRequestUrl(city, country);
 
     if(city && country) {
-      axios.get(`http://api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=${API_KEY}&units=metric`)
+      axios.get(apiRequestUrl)
         .then(response => {
           const weather = response.data;
           this.setState({
@@ -51,7 +53,6 @@ class App extends Component {
             error: "",
             loaded: true
           })
-          console.log(response)
         })
         .catch(err => {
           this.setState({
@@ -72,18 +73,20 @@ class App extends Component {
             loadWeather={this.getWeather} 
             handleFormClick={this.handleFormClick}
           />
-          <Weather
-            temperature={this.state.temperature}
-            maxtemp={this.state.maxTemp}
-            mintemp={this.state.minTemp}
-            city={this.state.city}
-            country={this.state.country}
-            humidity={this.state.humidity}
-            description={this.state.description}
-            code={this.state.code}
-            error={this.state.error}
-            searched={this.state.searched}
-          />
+          {this.state.searched && (
+            <Weather
+              temperature={this.state.temperature}
+              maxtemp={this.state.maxTemp}
+              mintemp={this.state.minTemp}
+              city={this.state.city}
+              country={this.state.country}
+              humidity={this.state.humidity}
+              description={this.state.description}
+              code={this.state.code}
+              error={this.state.error}
+              searched={this.state.searched} // @TO-DO: Apply CSSTransition on mount so this prop is not necessary 
+            />
+          )}
           <Navbar/>
       </div>
     )

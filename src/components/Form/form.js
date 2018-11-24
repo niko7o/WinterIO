@@ -9,46 +9,43 @@ class Form extends Component {
             country: '',
             submitted: false,
         }
-        this.handleSubmit = this.handleSubmit.bind(this);
-        this.handleCityChange = this.handleCityChange.bind(this);
-        this.handleCountryChange = this.handleCountryChange.bind(this);
-        this.resetForm = this.resetForm.bind(this);
-        console.log('Form', props)
     }
 
-    handleCountryChange(event) {
+    handleCountryChange = (event) => {
         this.setState({
             country: event.target.value
         })
     }
 
-    handleCityChange(event) {
+    handleCityChange = (event) => {
         this.setState({
             city: event.target.value
         })
     }
 
-    resetForm() {
-        let city = document.querySelector('input[name="city"]');
-        let country = document.querySelector('input[name="country"]');
-        city.value = '';
-        country.value = '';
+    resetForm = () => {
+        this.setState({
+            city: '',
+            country: '',
+            submitted: true
+        })
     }
 
-    handleSubmit(event) {
+    handleOnClickSubmit = (e) => {
+        e.preventDefault();
+        this.props.loadWeather(this.state);
         this.props.handleFormClick();
-        setTimeout(() => {
-            this.resetForm();
-        }, 100);
+        this.resetForm();
     }
-    
+
     render() {
         return (
-            <form id="weatherForm" className="Form" onSubmit={this.props.loadWeather}>
+            <form id="weatherForm" className="Form">
                 <input 
                     className="Form__input"
                     type="text"
                     name="city"
+                    value={this.state.city}
                     placeholder={(this.state.submitted ? 'Another city..' : 'City..')}
                     onChange={this.handleCityChange}
                 />
@@ -58,10 +55,11 @@ class Form extends Component {
                     type="text"
                     name="country"
                     placeholder="Country..."
+                    value={this.state.country}
                     onChange={this.handleCountryChange}
                 />
 
-                <button onClick={this.handleSubmit} type="submit" className="Form__submit">
+                <button onClick={this.handleOnClickSubmit} type="submit" className="Form__submit">
                     {(this.state.submitted ? "Find another place" : 'Look up the weather')}
                 </button>
             </form>
