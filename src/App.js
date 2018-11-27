@@ -22,10 +22,10 @@ class App extends Component {
     humidity: undefined,
     description: undefined,
     code: undefined, // Will determine which cute illustration to mount
-    error: null,
-    loaded: false, // Defines preloader mounting/unmounting
     searched: false,
-    showError: true // For text control on Form component
+    showError: true, // For text control on Form component
+    loaded: false, // Defines preloader mounting/unmounting
+    error: null,
   }
 
   handleFormClick = (e) => {
@@ -66,14 +66,14 @@ class App extends Component {
           })
         })
         .catch(err => {
-            this.handleError('Weather has not been found. Try another place!');
+            this.handleError('Is that even a place? Try another location!');
         })
     } else {
-        this.handleError('Please fill both inputs before searching for the weather..');
+        this.handleError('Please fill both inputs before searching..');
     }
   }
 
-  handleErrorAndUnmount = () => {
+  unmountErrorNotification = () => {
     this.setState({
       showError: false
     })
@@ -107,7 +107,7 @@ class App extends Component {
           { this.state.showError && this.state.error ?
             <Error 
               message={this.state.error} 
-              unmount={this.handleErrorAndUnmount}
+              unmount={this.unmountErrorNotification}
             /> 
             : null 
           }
