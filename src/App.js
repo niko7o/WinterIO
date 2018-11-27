@@ -23,9 +23,9 @@ class App extends Component {
     description: undefined,
     code: undefined, // Will determine which cute illustration to mount
     searched: false,
-    showError: true, // For text control on Form component
     loaded: false, // Defines preloader mounting/unmounting
     error: null,
+    showError: true, // For text control on Form component
   }
 
   handleFormClick = (e) => {
@@ -50,7 +50,6 @@ class App extends Component {
       axios.get(apiRequestUrl)
         .then(response => {
           const weather = response.data;
-          console.log(weather.weather[0].icon)
           this.setState({
             temperature: weather.main.temp,
             maxTemp: weather.main.temp_max,
@@ -64,6 +63,7 @@ class App extends Component {
             showError: true,
             loaded: true
           })
+          console.log(weather.weather[0].icon) // For stateless icon components
         })
         .catch(err => {
             this.handleError('Is that even a place? Try another location!');
