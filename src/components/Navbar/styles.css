@@ -1,26 +1,29 @@
 .Navbar {
     position: fixed;
     bottom: 0;
-    left: 0;
     width: 100%;
+    margin: 0 auto 1em;
     height: 60px;
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
 }
 
 .Navbar__tab {
-    flex-basis: 33.33%;
-    width: 33.33%;
-    text-align: center;
-    height: 60px;
-    background-color: #f5f5f5;
     display: flex;
     justify-content: center;
     align-items: center;
-    box-shadow:         inset 1px 0px 1px 2px #dbdbdb;
-    -moz-box-shadow:    inset 1px 0px 1px 2px #dbdbdb;
-    -webkit-box-shadow: inset 1px 0px 1px 2px #dbdbdb;
+    border-radius: 6px;
+    background-color: #f5f5f5;
+    text-align: center;
+    font-size: 3.2vw;
+    letter-spacing: .5px;
+    width: 30%;
+    flex-basis: 30%;
+    height: 7vh;
+    text-transform: uppercase;
+    cursor: pointer;
+    border: 0px;
 }
 
 .Navbar__tab.active {

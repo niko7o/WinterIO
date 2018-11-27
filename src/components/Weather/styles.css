@@ -52,12 +52,12 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 0 auto;
-    margin-top: .4em;
+    margin: .6em auto .4em;
+    letter-spacing: 2px;
 }
 
 .weather__ranges {
-    margin-top: 1em;
+    font-size: 22px;
     display: flex;
     justify-content: space-between;
     align-items: center;
