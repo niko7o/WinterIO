@@ -4,27 +4,21 @@ import './styles.css';
 class Error extends Component {
     constructor(props) {
         super();
-        this.state = {
-            duration: 2000,
-            hidden: false
-        }
     }
 
     componentDidMount() {
-        this.toggleNotification(this.state.duration);
+        this.toggleError(2000)
     }
 
-    toggleNotification = (duration) => {
-        setTimeout(function() {
-            this.setState({
-               hidden: true 
-            })
-        }.bind(this), duration);
+    toggleError = (duration) => {
+        setTimeout(() => {
+            this.props.unmount();
+        }, duration);
     }
 
     render() {
         return (
-            <div className={"Error" + (this.state.hidden ? ' hidden' : '')}>{this.props.message}</div>
+            <div className="Error">{this.props.message}</div>
         )
     }
 }

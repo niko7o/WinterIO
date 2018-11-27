@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './styles.css';
 import '../Error/error';
-import Preloader from '../Preloader/preloader';
+//import Preloader from '../Preloader/preloader';
 
 const Sun = () => <img className="Weather_sun floating" src="./sun.png" alt="Sun"/>;
 
@@ -21,11 +21,8 @@ class Weather extends Component {
     }
 
     render() {
-        // if(!this.props.loaded) {
-        //     return <Preloader></Preloader>
-        // }
         return (
-            <div className={"Weather" + (this.props.searched && this.props.description ? " found" : '')}>
+            <div className={"Weather" + (this.props.loaded && this.props.description ? " found" : '')}>
                 <div className="Weather__info">
                 { 
                     this.props.country && this.props.city && 

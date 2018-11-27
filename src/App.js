@@ -4,7 +4,6 @@ import axios from 'axios';
 import Form from './components/Form/form';
 import Weather from './components/Weather/weather';
 import Navbar from './components/Navbar/navbar';
-import Preloader from './components/Preloader/preloader';
 import Error from './components/Error/error';
 
 import './styles.css';
@@ -25,7 +24,8 @@ class App extends Component {
     code: undefined, // Will determine which cute illustration to mount
     error: null,
     loaded: false, // Defines preloader mounting/unmounting
-    searched: false // For text control on Form component
+    searched: false,
+    showError: true // For text control on Form component
   }
 
   handleFormClick = (e) => {
@@ -36,6 +36,7 @@ class App extends Component {
 
   handleError = (errorMessage) => {
     this.setState({
+      showError: true,
       error: errorMessage
     })
   }
@@ -49,6 +50,7 @@ class App extends Component {
       axios.get(apiRequestUrl)
         .then(response => {
           const weather = response.data;
+          console.log(weather.weather[0].icon)
           this.setState({
             temperature: weather.main.temp,
             maxTemp: weather.main.temp_max,
@@ -59,6 +61,7 @@ class App extends Component {
             description: weather.weather[0].description,
             code: weather.weather[0],
             error: null,
+            showError: true,
             loaded: true
           })
         })
@@ -70,6 +73,12 @@ class App extends Component {
     }
   }
 
+  handleErrorAndUnmount = () => {
+    this.setState({
+      showError: false
+    })
+  }
+
   render() {
     return (
       <div className="App">
@@ -78,7 +87,8 @@ class App extends Component {
             handleFormClick={this.handleFormClick}
             handleError={this.handleError}
           />
-          {this.state.searched && (
+
+          {this.state.searched && this.state.loaded ?
             <Weather
               temperature={this.state.temperature}
               maxtemp={this.state.maxTemp}
@@ -92,12 +102,16 @@ class App extends Component {
               loaded={this.state.loaded}
               searched={this.state.searched} // @TO-DO: Apply CSSTransition on mount so this prop is not necessary 
             />
-          )}
-          {this.state.error && (
+          : null }
+
+          { this.state.showError && this.state.error ?
             <Error 
               message={this.state.error} 
-            />
-          )}
+              unmount={this.handleErrorAndUnmount}
+            /> 
+            : null 
+          }
+
           <Navbar/>
       </div>
     )
