@@ -35,6 +35,7 @@ class Form extends Component {
         e.preventDefault();
         this.props.loadWeather(this.state);
         this.props.handleFormClick();
+        this.props.handleError();
         this.resetForm();
     }
 

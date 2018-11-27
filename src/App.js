@@ -4,6 +4,7 @@ import axios from 'axios';
 import Form from './components/Form/form';
 import Weather from './components/Weather/weather';
 import Navbar from './components/Navbar/navbar';
+import Error from './components/Error/error';
 
 import './styles.css';
 import * as api from './constants/apiConstants';
@@ -21,7 +22,7 @@ class App extends Component {
     humidity: undefined,
     description: undefined,
     code: undefined, // Will determine which cute illustration to mount
-    error: undefined, // For error handling component
+    error: null,
     loaded: false, // Defines preloader mounting/unmounting
     searched: false // For text control on Form component
   }
@@ -29,6 +30,12 @@ class App extends Component {
   handleFormClick = (e) => {
     this.setState({
       searched: true
+    })
+  }
+
+  handleError = (errorMessage) => {
+    this.setState({
+      error: errorMessage
     })
   }
 
@@ -50,13 +57,13 @@ class App extends Component {
             humidity: weather.main.humidity,
             description: weather.weather[0].description,
             code: weather.weather[0],
-            error: "",
+            error: null,
             loaded: true
           })
         })
         .catch(err => {
           this.setState({
-            error: 'Weather not found'
+            error: 'Weather has not been found. Try another place!'
           })
         })
     } else {
@@ -72,6 +79,7 @@ class App extends Component {
           <Form 
             loadWeather={this.getWeather} 
             handleFormClick={this.handleFormClick}
+            handleError={this.handleError}
           />
           {this.state.searched && (
             <Weather
@@ -85,6 +93,11 @@ class App extends Component {
               code={this.state.code}
               error={this.state.error}
               searched={this.state.searched} // @TO-DO: Apply CSSTransition on mount so this prop is not necessary 
+            />
+          )}
+          {this.state.error && (
+            <Error 
+              message={this.state.error} 
             />
           )}
           <Navbar/>

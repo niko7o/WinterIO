@@ -1,18 +1,18 @@
 import React, { Component } from 'react';
 import './styles.css';
 
-const navigationTabs = ['current', 'forecast', 'find me'];
+const navigationTabs = [
+    'current', 
+    'forecast', 
+    'find me'
+];
 
 class Navbar extends Component {
-        state = { 
-            activeTab: 'current' 
-        }
-
-    changeTabOnClick = (clickedTab) => {
-        this.setState({ 
-            activeTab: clickedTab
-        })
+    state = { 
+        activeTab: 'current' 
     }
+
+    changeTabOnClick = (clickedTab) => { this.setState({ activeTab: clickedTab }) }
 
     render() {
         return (
