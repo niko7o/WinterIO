@@ -23,9 +23,6 @@ class Error extends Component {
     }
 
     render() {
-        if(!this.props.message) {
-            return <React.Fragment></React.Fragment>
-        }
         return (
             <div className={"Error" + (this.state.hidden ? ' hidden' : '')}>{this.props.message}</div>
         )

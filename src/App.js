@@ -4,6 +4,7 @@ import axios from 'axios';
 import Form from './components/Form/form';
 import Weather from './components/Weather/weather';
 import Navbar from './components/Navbar/navbar';
+import Preloader from './components/Preloader/preloader';
 import Error from './components/Error/error';
 
 import './styles.css';
@@ -62,14 +63,10 @@ class App extends Component {
           })
         })
         .catch(err => {
-          this.setState({
-            error: 'Weather has not been found. Try another place!'
-          })
+            this.handleError('Weather has not been found. Try another place!');
         })
     } else {
-      this.setState({
-        error: "Please fill both inputs before searching for the weather.."
-      })
+        this.handleError('Please fill both inputs before searching for the weather..');
     }
   }
 
@@ -92,6 +89,7 @@ class App extends Component {
               description={this.state.description}
               code={this.state.code}
               error={this.state.error}
+              loaded={this.state.loaded}
               searched={this.state.searched} // @TO-DO: Apply CSSTransition on mount so this prop is not necessary 
             />
           )}

@@ -23,20 +23,19 @@ class Form extends Component {
         })
     }
 
+    handleOnClickSubmit = (e) => {
+        e.preventDefault();
+        this.props.loadWeather(this.state);
+        this.props.handleFormClick();
+        this.resetForm();
+    }
+
     resetForm = () => {
         this.setState({
             city: '',
             country: '',
             submitted: true
         })
-    }
-
-    handleOnClickSubmit = (e) => {
-        e.preventDefault();
-        this.props.loadWeather(this.state);
-        this.props.handleFormClick();
-        this.props.handleError();
-        this.resetForm();
     }
 
     render() {
@@ -49,6 +48,7 @@ class Form extends Component {
                     value={this.state.city}
                     placeholder={(this.state.submitted ? 'Another city..' : 'City..')}
                     onChange={this.handleCityChange}
+                    autoFocus
                 />
 
                 <input 

@@ -5,7 +5,7 @@ class Preloader extends Component {
     render() {
         return(
             <div className="Preloader">
-                <div className="loader">Loading...</div>
+                <div className="loader"></div>
             </div>
         );
     }
