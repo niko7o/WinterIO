@@ -1,7 +1,7 @@
 {
   "main.css": "/WinterIO/static/css/main.527f5d8e.chunk.css",
-  "main.js": "/WinterIO/static/js/main.5931f9cd.chunk.js",
-  "main.js.map": "/WinterIO/static/js/main.5931f9cd.chunk.js.map",
+  "main.js": "/WinterIO/static/js/main.2e4fcfd3.chunk.js",
+  "main.js.map": "/WinterIO/static/js/main.2e4fcfd3.chunk.js.map",
   "static/js/1.19abf5f3.chunk.js": "/WinterIO/static/js/1.19abf5f3.chunk.js",
   "static/js/1.19abf5f3.chunk.js.map": "/WinterIO/static/js/1.19abf5f3.chunk.js.map",
   "runtime~main.js": "/WinterIO/static/js/runtime~main.42ae2a49.js",
@@ -9,6 +9,6 @@
   "static/css/main.527f5d8e.chunk.css.map": "/WinterIO/static/css/main.527f5d8e.chunk.css.map",
   "static/media/resets.css": "/WinterIO/static/media/bold-webfont.c498c8f6.woff",
   "index.html": "/WinterIO/index.html",
-  "precache-manifest.497d2712b6363c1bf9f12383fdd41b37.js": "/WinterIO/precache-manifest.497d2712b6363c1bf9f12383fdd41b37.js",
+  "precache-manifest.6fc1f288d926817f37a296ca6ba9306a.js": "/WinterIO/precache-manifest.6fc1f288d926817f37a296ca6ba9306a.js",
   "service-worker.js": "/WinterIO/service-worker.js"
 }

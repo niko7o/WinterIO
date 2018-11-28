@@ -12,19 +12,19 @@ self.__precacheManifest = [
     "url": "/WinterIO/static/js/runtime~main.42ae2a49.js"
   },
   {
-    "revision": "5931f9cd6499aa64a4f7",
-    "url": "/WinterIO/static/js/main.5931f9cd.chunk.js"
+    "revision": "2e4fcfd38bdf4363b535",
+    "url": "/WinterIO/static/js/main.2e4fcfd3.chunk.js"
   },
   {
     "revision": "19abf5f330a4e919a6a3",
     "url": "/WinterIO/static/js/1.19abf5f3.chunk.js"
   },
   {
-    "revision": "5931f9cd6499aa64a4f7",
+    "revision": "2e4fcfd38bdf4363b535",
     "url": "/WinterIO/static/css/main.527f5d8e.chunk.css"
   },
   {
-    "revision": "ed3ead6b7ed205137102702a18f8b0bd",
+    "revision": "0c5643eae330f304c6ee6cb6f4af6eef",
     "url": "/WinterIO/index.html"
   }
 ];
