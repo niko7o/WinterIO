@@ -12,13 +12,15 @@ class Error extends Component {
 
     toggleError = (duration) => {
         setTimeout(() => {
-            this.props.unmount();
+            this.props.unmountMe();
         }, duration);
     }
 
     render() {
         return (
-            <div className="Error">{this.props.message}</div>
+            <div className="Error">
+                <span>{this.props.message}</span>
+            </div>
         )
     }
 }

@@ -44,10 +44,10 @@ class App extends Component {
   getWeather = (form) => {
     const city = form.city;
     const country = form.country;
-    const apiRequestUrl = buildApiRequestUrl(city, country);
+    const apiRequest = buildApiRequestUrl(city, country);
 
     if(city && country) {
-      axios.get(apiRequestUrl)
+      axios.get(apiRequest)
         .then(response => {
           const weather = response.data;
           this.setState({
@@ -63,7 +63,7 @@ class App extends Component {
             showError: true,
             loaded: true
           })
-          console.log(weather.weather[0].icon) // For stateless icon components
+          console.log(weather.weather[0].icon) // To recompile codes for stateless icon components
         })
         .catch(err => {
             this.handleError('Is that even a place? Try another location!');
@@ -88,7 +88,7 @@ class App extends Component {
             handleError={this.handleError}
           />
 
-          {this.state.searched && this.state.loaded ?
+          { this.state.searched && this.state.loaded ?
             <Weather
               temperature={this.state.temperature}
               maxtemp={this.state.maxTemp}
@@ -107,7 +107,7 @@ class App extends Component {
           { this.state.showError && this.state.error ?
             <Error 
               message={this.state.error} 
-              unmount={this.unmountErrorNotification}
+              unmountMe={this.unmountErrorNotification}
             /> 
             : null 
           }
