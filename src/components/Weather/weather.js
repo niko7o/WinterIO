@@ -3,15 +3,16 @@ import * as weather from '../../constants/weatherConstants';
 import './styles.css';
 import '../Error/error';
 
-/*
- * TO-DO: ask Cristian why I had to use {} to read the prop given to stateless component
- */
-const WeatherCodeIcon = ({code}) => <img className="weather_icon floating" src={weather.CODE_ICONS[code]} alt="icon"/>
+const WeatherCodeIcon = ({code}) => 
+    <img 
+        className="weather_icon floating" 
+        src={weather.CODE_ICONS[code]} 
+        alt="icon"
+    />
 
 class Weather extends Component {
     constructor(props) {
         super(props);
-        console.log(props)
     }
 
     render() {
@@ -37,7 +38,9 @@ class Weather extends Component {
                     </div>
                 }
                 {
-                    <WeatherCodeIcon code={this.props.code}></WeatherCodeIcon>
+                    <WeatherCodeIcon
+                        code={this.props.code} 
+                    />
                 }
                 { 
                     this.props.maxtemp && this.props.mintemp &&
