@@ -1,24 +1,17 @@
 import React, { Component } from 'react';
+import * as weather from '../../constants/weatherConstants';
 import './styles.css';
 import '../Error/error';
-//import Preloader from '../Preloader/preloader';
-
 
 /*
- * TO-DO: refactor stateless components to object literals
+ * TO-DO: ask Cristian why I had to use {} to read the prop given to stateless component
  */
-const Sun = () => <img className="Weather_sun floating" src="./weather_icons/sun.png" alt="Sun"/>;
-const Cloud = () => <img className="Weather_sun floating" src="./weather_icons/cloud.png" alt="Sun" />;
-
-// const drawings = {
-//     sun: '<img className="Weather_sun floating" src="./sun.png" alt="Sun"/>',
-//     clouds: '',
-//     rain: ''
-// }
+const WeatherCodeIcon = ({code}) => <img className="weather_icon floating" src={weather.CODE_ICONS[code]} alt="icon"/>
 
 class Weather extends Component {
     constructor(props) {
-        super();
+        super(props);
+        console.log(props)
     }
 
     render() {
@@ -44,8 +37,7 @@ class Weather extends Component {
                     </div>
                 }
                 {
-                    this.props.code &&
-                    <Sun></Sun>
+                    <WeatherCodeIcon code={this.props.code}></WeatherCodeIcon>
                 }
                 { 
                     this.props.maxtemp && this.props.mintemp &&

@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-
 import Form from './components/Form/form';
 import Weather from './components/Weather/weather';
 import Navbar from './components/Navbar/navbar';
 import Error from './components/Error/error';
-
 import './styles.css';
 import * as api from './constants/apiConstants';
 
@@ -14,6 +12,7 @@ const buildApiRequestUrl = (city, country) =>
 
 class App extends Component {
   state = {
+    time: Date.now(),
     temperature: undefined,
     maxTemp: undefined,
     minTemp: undefined,
@@ -58,7 +57,7 @@ class App extends Component {
             country: weather.sys.country,
             humidity: weather.main.humidity,
             description: weather.weather[0].description,
-            code: weather.weather[0],
+            code: weather.weather[0].icon,
             error: null,
             showError: true,
             loaded: true
@@ -81,6 +80,7 @@ class App extends Component {
 
   render() {
     return (
+      /* Depending on this.state.time, change the background of the app dynamically*/
       <div className="App">
           <Form 
             loadWeather={this.getWeather} 
