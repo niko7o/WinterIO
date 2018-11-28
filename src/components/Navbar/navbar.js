@@ -17,7 +17,10 @@ class Navbar extends Component {
     render() {
         return (
             <div className="Navbar">
-                { navigationTabs.map((tab, i) => <button key={i} className={"Navbar__tab" + (this.state.activeTab === tab ? ' active' : '')}> { tab } </button>) }
+                { 
+                    navigationTabs.map((tab, i) => 
+                    <button key={i} className={"Navbar__tab" + (this.state.activeTab === tab ? ' active' : '')}> { tab } </button>) 
+                }
             </div>
         )
     }

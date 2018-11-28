@@ -3,11 +3,12 @@ import './styles.css';
 import '../Error/error';
 //import Preloader from '../Preloader/preloader';
 
-const Sun = () => <img className="Weather_sun floating" src="./sun.png" alt="Sun"/>;
 
 /*
  * TO-DO: refactor stateless components to object literals
  */
+const Sun = () => <img className="Weather_sun floating" src="./weather_icons/sun.png" alt="Sun"/>;
+const Cloud = () => <img className="Weather_sun floating" src="./weather_icons/cloud.png" alt="Sun" />;
 
 // const drawings = {
 //     sun: '<img className="Weather_sun floating" src="./sun.png" alt="Sun"/>',
