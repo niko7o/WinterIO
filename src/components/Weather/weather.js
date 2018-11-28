@@ -3,7 +3,7 @@ import * as weather from '../../constants/weatherConstants';
 import './styles.css';
 import '../Error/error';
 
-const WeatherCodeIcon = ({code}) => 
+const WeatherCodeIcon = ({code}) =>
     <img 
         className="weather_icon floating" 
         src={weather.CODE_ICONS[code]} 
@@ -11,10 +11,6 @@ const WeatherCodeIcon = ({code}) =>
     />
 
 class Weather extends Component {
-    constructor(props) {
-        super(props);
-    }
-
     render() {
         return (
             <div className={"Weather" + (this.props.loaded && this.props.description ? " found" : '')}>

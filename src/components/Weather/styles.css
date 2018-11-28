@@ -17,7 +17,8 @@
 
 .weather_icon {
     width: 20%;
-    margin-top: 2em;
+    margin-top: 1.5em;
+    margin-bottom: -2.5em;
 }
 
 .Weather.found {
