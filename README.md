@@ -8,6 +8,10 @@ WinterIO is a mobile-first React application that finds out the weather for you.
 - Axios fetching
 - Sexy weather!
 
+![screen1](https://nikotomad.github.io/WinterIO/screenshots/searched.png)
+![screen1](https://nikotomad.github.io/WinterIO/screenshots/home.png)
+
+
 # Future Features
 
 - HTML5 geolocation
