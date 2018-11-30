@@ -6,5 +6,5 @@ export const CODE_ICONS = {
     '02n': '../../weather_icons/cloud.png', // few clouds
     '03n': '../../weather_icons/cloud.png', // scattered clouds
     '10n': '../../weather_icons/rain.gif', // light rain
-    '50d': '../../weather_icons/mist.png', // mist
+    '50d': '../../weather_icons/mist.png', // mist, fog
 }

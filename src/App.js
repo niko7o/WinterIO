@@ -12,7 +12,7 @@ const buildApiRequestUrl = (city, country) =>
 
 class App extends Component {
   state = {
-    time: Date.now(),
+    time: 0, // Date.now
     temperature: undefined,
     maxTemp: undefined,
     minTemp: undefined,
@@ -27,6 +27,16 @@ class App extends Component {
     showError: true, // For text control on Form component
   }
 
+  componentDidMount() {
+    setInterval(() => {
+      this.increaseTime(1);
+    }, 1000)
+  }
+
+  componentDidUpdate() {
+    //console.log(this.state.time)
+  }
+
   handleFormClick = (e) => {
     this.setState({
       searched: true
@@ -38,6 +48,14 @@ class App extends Component {
       showError: true,
       error: errorMessage
     })
+  }
+
+  increaseTime = (multiplier) => {
+    this.setState(function (previousState) {
+      return {
+        time: previousState.time + 1
+      };
+    });
   }
 
   getWeather = (form) => {
@@ -80,7 +98,7 @@ class App extends Component {
 
   render() {
     return (
-      /* Depending on this.state.time, change the background of the app dynamically*/
+      /* @TO-DO: Depending on this.state.time, change the background of the app dynamically */
       <div className="App">
           <Form 
             loadWeather={this.getWeather} 
