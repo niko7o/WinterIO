@@ -72,7 +72,7 @@
 
 .Weather__maxtemp::after,
 .Weather__mintemp::after {
-    content: "º";
+    content: "";
 }
 
 .Weather__description {

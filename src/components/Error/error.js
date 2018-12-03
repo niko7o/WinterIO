@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './styles.css';
 
 class Error extends Component {
-    
+
     componentDidMount() {
         this.toggleError(2000)
     }
