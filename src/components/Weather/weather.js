@@ -17,19 +17,19 @@ class Weather extends Component {
                 <div className="Weather__info">
                 { 
                     this.props.country && this.props.city && 
-                    <div className="weather__location">
+                    <div className="Weather__location">
                         <h1>{this.props.city}</h1>
                     </div> 
                 }
                 { 
                     this.props.description && 
-                    <div className="weather__description">
+                    <div className="Weather__description">
                         <span>{this.props.description}</span>  
                     </div>
                 }
                 {
                     this.props.temperature &&
-                    <div className="weather__temperature">
+                    <div className="Weather__temperature">
                         <span>{this.props.temperature}º</span>
                     </div>
                 }
@@ -38,9 +38,9 @@ class Weather extends Component {
                 }
                 { 
                     this.props.maxtemp && this.props.mintemp &&
-                    <div className="weather__ranges">
-                        <span className="weather_mintemp">{this.props.mintemp}º</span>
-                        <span className="weather_maxtemp">{this.props.maxtemp}º</span>
+                    <div className="Weather__ranges">
+                        <span className="Weather__mintemp">{this.props.mintemp}º</span>
+                        <span className="Weather__maxtemp">{this.props.maxtemp}º</span>
                     </div>
                 }
                 </div>

@@ -6,7 +6,9 @@ class Forecast extends Component {
         return (
             <React.Fragment>
                 <div className="Forecast">
-                    <div className="loader"></div>
+                    {
+                        // Hide forecast until the App.js state is set to Forecasts and not Current
+                    }
                 </div>
             </React.Fragment>
         );

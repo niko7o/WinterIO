@@ -17,9 +17,9 @@
     background-color: #f5f5f5;
     text-align: center;
     font-size: 3.2vw;
-    letter-spacing: .5px;
-    width: 30%;
-    flex-basis: 30%;
+    letter-spacing: 1px;
+    width: 42%;
+    flex-basis: 42%;
     height: 7vh;
     text-transform: uppercase;
     cursor: pointer;

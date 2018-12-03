@@ -1,18 +1,22 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+
+// Components
 import Form from './components/Form/form';
 import Weather from './components/Weather/weather';
 import Navbar from './components/Navbar/navbar';
 import Error from './components/Error/error';
+import Geolocator from './components/Geolocator/geolocator';
+
 import './styles.css';
 import * as api from './constants/apiConstants';
 
-const buildApiRequestUrl = (city, country) => 
-  `${api.BASE_URL}?q=${city},${country}&appid=${api.APP_ID}&${api.OPTIONS}`;
+const buildApiSearchRequestUrl = (city, country) => `${api.BASE_URL}?q=${city},${country}&appid=${api.APP_ID}&${api.OPTIONS}`;
+const buildApiGeoRequestUrl = (lat, lng) => `${api.BASE_URL}?lat=${lat}&lon=${lng}&appid=${api.APP_ID}&${api.OPTIONS}`;
 
 class App extends Component {
   state = {
-    time: 0, // Date.now
+    tab: 'current',
     temperature: undefined,
     maxTemp: undefined,
     minTemp: undefined,
@@ -27,14 +31,10 @@ class App extends Component {
     showError: true, // For text control on Form component
   }
 
-  componentDidMount() {
-    setInterval(() => {
-      this.increaseTime(1);
-    }, 1000)
-  }
-
-  componentDidUpdate() {
-    //console.log(this.state.time)
+  changeTabState = newTab => {
+    this.setState({
+      tab: newTab
+    })
   }
 
   handleFormClick = (e) => {
@@ -50,21 +50,40 @@ class App extends Component {
     })
   }
 
-  increaseTime = (multiplier) => {
-    this.setState(function (previousState) {
-      return {
-        time: previousState.time + 1
-      };
-    });
+  getGeoWeather = (lat, lng) => {
+    const apiGeoRequest = buildApiGeoRequestUrl(lat, lng);
+
+    if(lat && lng) {
+      axios.get(apiGeoRequest)
+      .then(response => {
+        const weather = response.data;
+        this.setState({
+          temperature: weather.main.temp,
+          maxTemp: weather.main.temp_max,
+          minTemp: weather.main.temp_min,
+          city: weather.name,
+          country: weather.sys.country,
+          humidity: weather.main.humidity,
+          description: weather.weather[0].description,
+          code: weather.weather[0].icon,
+          error: null,
+          showError: true,
+          loaded: true,
+          searched: true,
+        })
+      }).catch(err => {
+        this.handleError(err);
+      })
+    }
   }
 
   getWeather = (form) => {
     const city = form.city;
     const country = form.country;
-    const apiRequest = buildApiRequestUrl(city, country);
+    const apiSearchRequest = buildApiSearchRequestUrl(city, country);
 
     if(city && country) {
-      axios.get(apiRequest)
+      axios.get(apiSearchRequest)
         .then(response => {
           const weather = response.data;
           this.setState({
@@ -80,7 +99,7 @@ class App extends Component {
             showError: true,
             loaded: true
           })
-          console.log(weather.weather[0].icon) // To recompile codes for stateless icon components
+          console.log(weather.weather[0].icon) //@TO-DO: Delete this. Temporary to recompile codes returned form api for weather svgs
         })
         .catch(err => {
             this.handleError('Is that even a place? Try another location!');
@@ -98,8 +117,12 @@ class App extends Component {
 
   render() {
     return (
-      /* @TO-DO: Depending on this.state.time, change the background of the app dynamically */
       <div className="App">
+          <Geolocator 
+            handleError={this.handleError}
+            getGeoWeather={this.getGeoWeather}
+          />
+
           <Form 
             loadWeather={this.getWeather} 
             handleFormClick={this.handleFormClick}
@@ -130,7 +153,9 @@ class App extends Component {
             : null 
           }
 
-          <Navbar/>
+          <Navbar
+            changeTabState={this.changeTabState}
+          />
       </div>
     )
   }
