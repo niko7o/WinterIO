@@ -3,7 +3,7 @@ import './styles.css';
 
 const navigationTabs = [
     'current', 
-    'forecast', 
+    'forecast',
 ];
 
 class Navbar extends Component {
@@ -16,7 +16,9 @@ class Navbar extends Component {
     }
 
     changeTabOnClick(clickedTab) {
+        this.setState({ activeTab: clickedTab })
         this.props.changeTabState(clickedTab);
+        console.log(this.state.activeTab)
     }
 
     render() {
@@ -26,7 +28,7 @@ class Navbar extends Component {
                     navigationTabs.map((tab, i) => 
                     <button 
                         key={i} 
-                        className={"Navbar__tab" + (this.props.activeTab === tab ? ' active' : '')} 
+                        className={"Navbar__tab" + (this.state.activeTab === tab ? ' active' : '')} 
                         onClick={this.changeTabOnClick.bind(this, tab)}
                     >
                         { tab } 
