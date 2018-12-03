@@ -6,7 +6,7 @@ import '../Error/error';
 const WeatherCodeIcon = ({code}) =>
     <img 
         className="weather_icon floating" 
-        src={weather.CODE_ICONS[code]} 
+        src={weather.CODE_ICONS_SVG[code]} 
         alt="icon"
     />
 
@@ -34,9 +34,7 @@ class Weather extends Component {
                     </div>
                 }
                 {
-                    <WeatherCodeIcon
-                        code={this.props.code} 
-                    />
+                    <WeatherCodeIcon code={this.props.code} />
                 }
                 { 
                     this.props.maxtemp && this.props.mintemp &&

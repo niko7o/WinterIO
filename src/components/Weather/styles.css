@@ -16,9 +16,9 @@
 }
 
 .weather_icon {
-    width: 20%;
-    margin-top: 1.5em;
-    margin-bottom: -2.5em;
+    width: 40%;
+    margin-top: 2em;
+    margin-bottom: -5em;
 }
 
 .Weather.found {
