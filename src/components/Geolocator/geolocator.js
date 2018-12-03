@@ -6,32 +6,44 @@ class Geolocator extends Component {
        
     state = {
         lat: undefined,
-        lng: undefined
+        lng: undefined,
+        error: undefined,
+        requested: false,
+        loaded: false,
     }
 
 
     onLocateSuccess = position => {
         const coords = position.coords;
-        console.log(`Latitude : ${coords.latitude} | Longitude: ${coords.longitude}`);
-        console.log(`More or less ${coords.accuracy} meters.`);
 
         this.setState({
             lat: coords.latitude,
-            lng: coords.longitude
+            lng: coords.longitude,
+            requested: true,
+            loaded: true
         })
 
-        this.props.handleError('success')
+        console.log(this.state.lat, this.state.lng)
     }
 
     onLocateError = err => {
-        console.warn(`ERROR (${err.code}): ${err.message}`);
-        this.props.handlError(err.message)
+        this.setState({
+            requested: true,
+            loaded: true,
+            error: err.message
+        })
+        this.props.handleError(err.message)
     }
 
     getLocation = () => {
+        this.setState({
+            requested: true,
+            loaded: false
+        })
+
         const options = {
             enableHighAccuracy: true,
-            maximumAge: 0
+            maximumAge: 0,
         };
 
         navigator.geolocation.getCurrentPosition(this.onLocateSuccess, this.onLocateError, options);
@@ -41,7 +53,7 @@ class Geolocator extends Component {
         return (
             <img 
                 src="../../assets/geolocate.svg"
-                className="Geolocator__icon"
+                className={"Geolocator__icon" + (this.state.requested && !this.state.loaded ? ' spin' : '')}
                 alt="Geolocate me"
                 onClick={this.getLocation}
             />

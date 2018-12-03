@@ -2,16 +2,12 @@ import React, { Component } from 'react';
 import './styles.css';
 
 class Notification extends Component {
-    constructor(props, type) {
-        super();
-        this.type = type;
-    }
-
+    
     componentDidMount() {
-        this.toggleError(2000)
+        this.toggleNotification(2000)
     }
 
-    toggleError = (duration) => {
+    toggleNotification = (duration) => {
         setTimeout(() => {
             this.props.unmountMe();
         }, duration);

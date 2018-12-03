@@ -2,10 +2,7 @@ import React, { Component } from 'react';
 import './styles.css';
 
 class Error extends Component {
-    constructor(props) {
-        super();
-    }
-
+    
     componentDidMount() {
         this.toggleError(2000)
     }

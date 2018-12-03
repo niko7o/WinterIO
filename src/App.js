@@ -37,10 +37,6 @@ class App extends Component {
     })
   }
 
-  componentDidUpdate() {
-    console.log(this.state.tab)
-  }
-
   handleFormClick = (e) => {
     this.setState({
       searched: true
