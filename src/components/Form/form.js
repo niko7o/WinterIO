@@ -3,7 +3,7 @@ import './form.css';
 
 class Form extends Component {
     constructor(props) {
-        super();
+        super(props);
         this.state = {
             city: '',
             country: '',

@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+
+// Components
 import Form from './components/Form/form';
 import Weather from './components/Weather/weather';
 import Navbar from './components/Navbar/navbar';
 import Error from './components/Error/error';
+import Geolocator from './components/Geolocator/geolocator';
+
 import './styles.css';
 import * as api from './constants/apiConstants';
 
@@ -12,7 +16,7 @@ const buildApiRequestUrl = (city, country) =>
 
 class App extends Component {
   state = {
-    time: 0, // Date.now
+    tab: 'current',
     temperature: undefined,
     maxTemp: undefined,
     minTemp: undefined,
@@ -27,14 +31,14 @@ class App extends Component {
     showError: true, // For text control on Form component
   }
 
-  componentDidMount() {
-    setInterval(() => {
-      this.increaseTime(1);
-    }, 1000)
+  changeTabState = newTab => {
+    this.setState({
+      tab: newTab
+    })
   }
 
   componentDidUpdate() {
-    //console.log(this.state.time)
+    console.log(this.state.tab)
   }
 
   handleFormClick = (e) => {
@@ -80,7 +84,7 @@ class App extends Component {
             showError: true,
             loaded: true
           })
-          console.log(weather.weather[0].icon) // To recompile codes for stateless icon components
+          console.log(weather.weather[0].icon) //@TO-DO: Delete this. Temporary to recompile codes returned form api for weather svgs
         })
         .catch(err => {
             this.handleError('Is that even a place? Try another location!');
@@ -98,8 +102,11 @@ class App extends Component {
 
   render() {
     return (
-      /* @TO-DO: Depending on this.state.time, change the background of the app dynamically */
       <div className="App">
+          <Geolocator 
+            handleError={this.handleError}
+          />
+
           <Form 
             loadWeather={this.getWeather} 
             handleFormClick={this.handleFormClick}
@@ -130,7 +137,9 @@ class App extends Component {
             : null 
           }
 
-          <Navbar/>
+          <Navbar
+            changeTabState={this.changeTabState}
+          />
       </div>
     )
   }

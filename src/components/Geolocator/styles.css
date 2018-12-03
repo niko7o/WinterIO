@@ -1,0 +1,10 @@
+.Geolocator__icon {
+    width: 8%;
+    position: absolute;
+    top: 4%;
+    right: 6%;
+}
+
+.Geolocator__icon > svg {
+    fill: var(--primary);
+}

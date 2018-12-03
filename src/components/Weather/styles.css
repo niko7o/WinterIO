@@ -15,16 +15,17 @@
     transition: .75s ease;
 }
 
-.weather_icon {
+.Weather.found {
+    opacity: 1;
+    height: 43vh;
+}
+
+.Weather__icon {
     width: 40%;
     margin-top: 2em;
     margin-bottom: -5em;
 }
 
-.Weather.found {
-    opacity: 1;
-    height: 50vh;
-}
 
 .Weather__info {
     width: 95%;
@@ -32,22 +33,22 @@
     position: relative;
 }
 
-.weather__location h1, 
-.weather__description {
+.Weather__location h1, 
+.Weather__description {
     font-size: 5vw;
 }
 
-.weather__description {
+.Weather__description {
     margin-top: .8em;
 }
 
-.weather__location {
+.Weather__location {
     text-transform: uppercase;
     letter-spacing: 3px;
     margin-bottom: .5em;
 }
 
-.weather__temperature {
+.Weather__temperature {
     font-size: 16vw;
     font-weight: bold;
     display: flex;
@@ -57,28 +58,30 @@
     letter-spacing: 2px;
 }
 
-.weather__ranges {
+.Weather__ranges {
     font-size: 22px;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.weather__maxtemp,
-.weather__mintemp {
+.Weather__maxtemp,
+.Weather__mintemp {
     flex-basis: 50%;
 }
 
-.weather__maxtemp::after,
-.weather__mintemp::after {
+.Weather__maxtemp::after,
+.Weather__mintemp::after {
     content: "º";
 }
 
-.weather__description {
+.Weather__description {
     text-transform: uppercase;
     letter-spacing: 3px;
     font-weight: bold;
 }
+
+/* Animations Utilities */
 
 .floating {
     animation: float 6s ease-in-out infinite;

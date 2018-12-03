@@ -2,19 +2,21 @@ import React, { Component } from 'react';
 import './styles.css';
 
 const navigationTabs = [
-    'weather', 
+    'current', 
     'forecast', 
-    'find me',
 ];
+
 class Navbar extends Component {
-    state = { 
-        activeTab: 'weather' 
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            activeTab: 'current'
+        }
     }
 
     changeTabOnClick(clickedTab) {
-        this.setState({ 
-            activeTab: clickedTab 
-        }) 
+        this.props.changeTabState(clickedTab);
     }
 
     render() {
@@ -22,7 +24,11 @@ class Navbar extends Component {
             <div className="Navbar">
                 { 
                     navigationTabs.map((tab, i) => 
-                    <button key={i} className={"Navbar__tab" + (this.state.activeTab === tab ? ' active' : '')} onClick={this.changeTabOnClick.bind(this, tab)}>
+                    <button 
+                        key={i} 
+                        className={"Navbar__tab" + (this.props.activeTab === tab ? ' active' : '')} 
+                        onClick={this.changeTabOnClick.bind(this, tab)}
+                    >
                         { tab } 
                     </button>) 
                 }
