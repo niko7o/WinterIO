@@ -24,6 +24,11 @@ class Geolocator extends Component {
         })
 
         console.log(this.state.lat, this.state.lng)
+        this.props.handleError(`
+            Found position at:
+            LAT: ${this.state.lat}
+            LNG: ${this.state.lng}
+        `)
     }
 
     onLocateError = err => {
@@ -44,6 +49,7 @@ class Geolocator extends Component {
         const options = {
             enableHighAccuracy: true,
             maximumAge: 0,
+            timeout: 5000
         };
 
         navigator.geolocation.getCurrentPosition(this.onLocateSuccess, this.onLocateError, options);
