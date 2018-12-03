@@ -13,6 +13,7 @@ import * as api from './constants/apiConstants';
 
 const buildApiSearchRequestUrl = (city, country) => `${api.BASE_URL}?q=${city},${country}&appid=${api.APP_ID}&${api.OPTIONS}`;
 const buildApiGeoRequestUrl = (lat, lng) => `${api.BASE_URL}?lat=${lat}&lon=${lng}&appid=${api.APP_ID}&${api.OPTIONS}`;
+const buildForecastRequestUrl = (city, country) => `${api.BASE_URL}?q=${city},${country}&appid=${api.APP_ID}&${api.OPTIONS}`;
 
 class App extends Component {
   state = {
@@ -48,6 +49,38 @@ class App extends Component {
       showError: true,
       error: errorMessage
     })
+  }
+
+  getForecast = (form) => {
+    const city = form.city;
+    const country = form.country;
+    const apiForecastRequest = buildForecastRequestUrl(city, country);
+
+    if (city && country) {
+      axios.get(apiForecastRequest)
+        .then(response => {
+          const weather = response.data;
+          this.setState({
+            temperature: weather.main.temp,
+            maxTemp: weather.main.temp_max,
+            minTemp: weather.main.temp_min,
+            city: weather.name,
+            country: weather.sys.country,
+            humidity: weather.main.humidity,
+            description: weather.weather[0].description,
+            code: weather.weather[0].icon,
+            error: null,
+            showError: true,
+            loaded: true,
+            searched: true
+          })
+        })
+        .catch(err => {
+          this.handleError('Is that even a place? Try another location!');
+        })
+    } else {
+      this.handleError('Please fill both inputs before searching..');
+    }
   }
 
   getGeoWeather = (lat, lng) => {
@@ -97,7 +130,8 @@ class App extends Component {
             code: weather.weather[0].icon,
             error: null,
             showError: true,
-            loaded: true
+            loaded: true,
+            searched: true
           })
           console.log(weather.weather[0].icon) //@TO-DO: Delete this. Temporary to recompile codes returned form api for weather svgs
         })
@@ -155,6 +189,7 @@ class App extends Component {
 
           <Navbar
             changeTabState={this.changeTabState}
+            getForecast={this.getForecast}
           />
       </div>
     )
