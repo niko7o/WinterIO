@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import * as weather from '../../constants/weatherConstants';
 import './styles.css';
 import '../Error/error';
@@ -47,6 +48,17 @@ class Weather extends Component {
             </div>
         )
     }
+}
+
+Weather.propTypes = {
+    loaded: PropTypes.bool,
+    description: PropTypes.string,
+    country: PropTypes.string,
+    city: PropTypes.string,
+    temperature: PropTypes.string,
+    code: PropTypes.string,
+    maxtemp: PropTypes.string,
+    mintemp: PropTypes.string
 }
 
 export default Weather;
