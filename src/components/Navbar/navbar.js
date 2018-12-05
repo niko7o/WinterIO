@@ -11,14 +11,14 @@ class Navbar extends Component {
         super(props);
 
         this.state = {
-            activeTab: 'current'
+            highlightedTab : 'current'
         }
     }
 
     changeTabOnClick(clickedTab) {
-        this.setState({ activeTab: clickedTab })
+        this.setState({ highlightedTab : clickedTab })
         this.props.changeTabState(clickedTab);
-        console.log(this.state.activeTab)
+        console.log(this.state.highlightedTab )
     }
 
     render() {
