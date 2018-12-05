@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import './styles.css';
 import '../Error/error';
 
@@ -50,14 +51,25 @@ class Geolocator extends Component {
 
     render() {
         return (
-            <img 
-                src="../../assets/geolocate.svg"
-                className={"Geolocator__icon" + (this.state.requested && !this.state.loaded ? ' spin' : '')}
-                alt="Geolocate me"
-                onClick={this.getLocation}
-            />
+            <React.Fragment>
+                <img 
+                    src="../../assets/geolocate.svg"
+                    className={"Geolocator__icon" + (this.state.requested && !this.state.loaded ? ' spin' : '')}
+                    alt="Geolocate me"
+                    onClick={this.getLocation}
+                />
+                { this.state.requested && !this.state.loaded 
+                    ? <div className="Geolocator__loading"></div>
+                    : ''
+                }
+            </React.Fragment>
         )
     }
+}
+
+Geolocator.propTypes = {
+    getGeoWeather: PropTypes.func,
+    handleError: PropTypes.func,
 }
 
 export default Geolocator;
