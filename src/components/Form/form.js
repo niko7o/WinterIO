@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import './form.css';
 
 class Form extends Component {
@@ -69,6 +70,11 @@ class Form extends Component {
             </form>
         )
     }
+}
+
+Form.propTypes = {
+    loadWeather: PropTypes.func,
+    handleFormClick: PropTypes.func
 }
 
 export default Form;

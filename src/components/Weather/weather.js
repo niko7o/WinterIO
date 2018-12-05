@@ -61,4 +61,8 @@ Weather.propTypes = {
     mintemp: PropTypes.string
 }
 
+/* 
+ * @TO-DO: Make sure the api data object response returns a string for code & temperature fields
+ */
+
 export default Weather;
