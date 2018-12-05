@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import './styles.css';
 
 class Error extends Component {
@@ -20,6 +21,11 @@ class Error extends Component {
             </div>
         )
     }
+}
+
+Error.propTypes = {
+    unmountMe: PropTypes.func,
+    message: PropTypes.string
 }
 
 export default Error;

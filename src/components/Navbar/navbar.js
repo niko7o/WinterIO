@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import './styles.css';
 
 const navigationTabs = [
@@ -37,6 +38,10 @@ class Navbar extends Component {
             </div>
         )
     }
+}
+
+Navbar.propTypes = {
+    changeTabState: PropTypes.func,
 }
 
 export default Navbar;

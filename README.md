@@ -15,7 +15,7 @@ The idea is to migrate it to React Native in the near future.
 
 # Future Features
 
-- Jest test & snapshots
+- Jest testing & snapshots
 - CSSTransition from react-transition-group
 - <React.Suspense> for loader fallback on api fetch
 - Forecast (5 Days)
