@@ -7,7 +7,9 @@ import Weather from './components/Weather/weather';
 import Navbar from './components/Navbar/navbar';
 import Error from './components/Error/error';
 import Geolocator from './components/Geolocator/geolocator';
+import Spinner from './components/Spinner/spinner';
 
+// Styles & Utils
 import './styles.css';
 import * as api from './constants/apiConstants';
 
@@ -154,7 +156,7 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
+      <div className="WinterIO">
           <Geolocator 
             handleError={this.handleError}
             getGeoWeather={this.getGeoWeather}
@@ -166,7 +168,7 @@ class App extends Component {
             handleError={this.handleError}
           />
 
-          { this.state.searched && this.state.loaded ?
+          <React.Suspense fallback={<Spinner />}>
             <Weather
               temperature={this.state.temperature}
               maxtemp={this.state.maxTemp}
@@ -180,7 +182,7 @@ class App extends Component {
               loaded={this.state.loaded}
               searched={this.state.searched} // @TO-DO: Apply CSSTransition on mount so this prop is not necessary 
             />
-          : null }
+          </React.Suspense>
 
           { this.state.showError && this.state.error ?
             <Error 
