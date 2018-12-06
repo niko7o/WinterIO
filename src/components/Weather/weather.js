@@ -6,7 +6,7 @@ import '../Error/error';
 
 const WeatherCodeIcon = ({code}) =>
     <img 
-        className="weather_icon floating" 
+        className="Weather__icon floating" 
         src={weather.CODE_ICONS_SVG[code]} 
         alt="icon"
     />
@@ -51,18 +51,16 @@ class Weather extends Component {
 }
 
 Weather.propTypes = {
+    main: PropTypes.object,
+    coord: PropTypes.object,
     loaded: PropTypes.bool,
     description: PropTypes.string,
     country: PropTypes.string,
     city: PropTypes.string,
-    temperature: PropTypes.string,
+    temperature: PropTypes.number,
     code: PropTypes.string,
-    maxtemp: PropTypes.string,
-    mintemp: PropTypes.string
+    maxtemp: PropTypes.number,
+    mintemp: PropTypes.number
 }
-
-/* 
- * @TO-DO: Make sure the api data object response returns a string for code & temperature fields
- */
 
 export default Weather;

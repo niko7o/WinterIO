@@ -10,16 +10,16 @@ const navigationTabs = [
 class Navbar extends Component {
     constructor(props) {
         super(props);
-
         this.state = {
             highlightedTab : 'current'
         }
     }
 
     changeTabOnClick(clickedTab) {
-        this.setState({ highlightedTab : clickedTab })
+        this.setState({ 
+            highlightedTab : clickedTab 
+        })
         this.props.changeTabState(clickedTab);
-        console.log(this.state.highlightedTab )
     }
 
     render() {

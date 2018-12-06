@@ -13,7 +13,8 @@ import * as api from './constants/apiConstants';
 
 const buildApiSearchRequestUrl = (city, country) => `${api.BASE_URL}?q=${city},${country}&appid=${api.APP_ID}&${api.OPTIONS}`;
 const buildApiGeoRequestUrl = (lat, lng) => `${api.BASE_URL}?lat=${lat}&lon=${lng}&appid=${api.APP_ID}&${api.OPTIONS}`;
-const buildForecastRequestUrl = (city, country) => `${api.BASE_URL}?q=${city},${country}&appid=${api.APP_ID}&${api.OPTIONS}`;
+
+//const buildForecastRequestUrl = (city, country) => `${api.BASE_URL}?q=${city},${country}&appid=${api.APP_ID}&${api.OPTIONS}`;
 
 class App extends Component {
   state = {
@@ -25,11 +26,11 @@ class App extends Component {
     country: undefined,
     humidity: undefined,
     description: undefined,
-    code: undefined, // Will determine which cute illustration to mount
+    code: undefined,
     searched: false,
     loaded: false, // Defines preloader mounting/unmounting
-    error: null,
     showError: true, // For text control on Form component
+    error: null,
   }
 
   changeTabState = newTab => {
@@ -51,37 +52,37 @@ class App extends Component {
     })
   }
 
-  getForecast = (form) => {
-    const city = form.city;
-    const country = form.country;
-    const apiForecastRequest = buildForecastRequestUrl(city, country);
+  // getForecast = (form) => {
+  //   const city = form.city;
+  //   const country = form.country;
+  //   const apiForecastRequest = buildForecastRequestUrl(city, country);
 
-    if (city && country) {
-      axios.get(apiForecastRequest)
-        .then(response => {
-          const weather = response.data;
-          this.setState({
-            temperature: weather.main.temp,
-            maxTemp: weather.main.temp_max,
-            minTemp: weather.main.temp_min,
-            city: weather.name,
-            country: weather.sys.country,
-            humidity: weather.main.humidity,
-            description: weather.weather[0].description,
-            code: weather.weather[0].icon,
-            error: null,
-            showError: true,
-            loaded: true,
-            searched: true
-          })
-        })
-        .catch(err => {
-          this.handleError('Is that even a place? Try another location!');
-        })
-    } else {
-      this.handleError('Please fill both inputs before searching..');
-    }
-  }
+  //   if (city && country) {
+  //     axios.get(apiForecastRequest)
+  //       .then(response => {
+  //         const weather = response.data;
+  //         this.setState({
+  //           temperature: weather.main.temp,
+  //           maxTemp: weather.main.temp_max,
+  //           minTemp: weather.main.temp_min,
+  //           city: weather.name,
+  //           country: weather.sys.country,
+  //           humidity: weather.main.humidity,
+  //           description: weather.weather[0].description,
+  //           code: weather.weather[0].icon,
+  //           error: null,
+  //           showError: true,
+  //           loaded: true,
+  //           searched: true
+  //         })
+  //       })
+  //       .catch(err => {
+  //         this.handleError('Is that even a place? Try another location!');
+  //       })
+  //   } else {
+  //     this.handleError('Please fill both inputs before searching..');
+  //   }
+  // }
 
   getGeoWeather = (lat, lng) => {
     const apiGeoRequest = buildApiGeoRequestUrl(lat, lng);
@@ -90,6 +91,8 @@ class App extends Component {
       axios.get(apiGeoRequest)
       .then(response => {
         const weather = response.data;
+        console.log(weather);
+        
         this.setState({
           temperature: weather.main.temp,
           maxTemp: weather.main.temp_max,

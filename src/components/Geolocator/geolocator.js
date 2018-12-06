@@ -21,7 +21,6 @@ class Geolocator extends Component {
             requested: true,
             loaded: true
         })
-        console.log(this.state.lat, this.state.lng)
         this.props.getGeoWeather(this.state.lat, this.state.lng);
     }
 

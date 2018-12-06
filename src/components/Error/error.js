@@ -25,7 +25,7 @@ class Error extends Component {
 
 Error.propTypes = {
     unmountMe: PropTypes.func,
-    message: PropTypes.string
+    message: PropTypes.string,
 }
 
 export default Error;
