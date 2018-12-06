@@ -2,39 +2,31 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import './styles.css';
 
-const navigationTabs = [
-    'current', 
-    'forecast',
-];
-
 class Navbar extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            highlightedTab : 'current'
+            tab: 'current'
         }
     }
 
-    changeTabOnClick(clickedTab) {
-        this.setState({ 
-            highlightedTab : clickedTab 
-        })
+    changeTabOnClick = (clickedTab) => {
+        this.setState({ tab: clickedTab })
         this.props.changeTabState(clickedTab);
     }
 
     render() {
         return (
             <div className="Navbar">
-                { 
-                    navigationTabs.map((tab, i) => 
-                    <button 
-                        key={i} 
-                        className={"Navbar__tab" + (this.state.activeTab === tab ? ' active' : '')} 
-                        onClick={this.changeTabOnClick.bind(this, tab)}
-                    >
-                        { tab } 
-                    </button>) 
-                }
+                <button className={"Navbar__tab" + (this.state.tab === 'current' ? ' active' : '')} 
+                        onClick={() => this.changeTabOnClick('current')}>
+                        current
+                </button>
+
+                <button className={"Navbar__tab" + (this.state.tab === 'forecast' ? ' active' : '')} 
+                        onClick={() => this.changeTabOnClick('forecast')}>
+                        forecast
+                </button>
             </div>
         )
     }
