@@ -1,30 +1,24 @@
 import React, { Suspense, lazy, Component } from 'react';
 import axios from 'axios';
+import './styles.css';
+import * as api from './constants/apiConstants';
 
 import Form from './components/Form/form';
 import Navbar from './components/Navbar/navbar';
-import Error from './components/Error/error';
 import Geolocator from './components/Geolocator/geolocator';
+import Error from './components/Error/error';
 import Spinner from './components/Spinner/spinner';
-
-import './styles.css';
-import * as api from './constants/apiConstants';
 
 const Weather = lazy(() => import('./components/Weather/weather'));
 
 const buildScalableParamsQuery = (params, type) => {
-  let query = '';
-  params.forEach((parameter, i) => {
-    i !== (params.length - 1)
-    ? query += `${parameter},`
-    : query += `${parameter}`
-  })
   switch(type) {
     case 'geo': 
       return `${api.BASE_URL}?lat=${params[0]}&lon=${params[1]}&appid=${api.APP_ID}&${api.OPTIONS}`;
     case 'forecast': 
       return 1; //@TO-DO: forecast query when type === 'forecast'
     default:
+      const query = params.join(',');
       return `${api.BASE_URL}?q=${query}&appid=${api.APP_ID}&${api.OPTIONS}`;
   }
 }
@@ -42,7 +36,7 @@ class App extends Component {
     code: undefined,
     searched: false,
     loading: false,
-    showError: true, // for <Error> component mounting lifecycle
+    showError: true,
     error: null,
   }
 
@@ -66,7 +60,8 @@ class App extends Component {
   handleError = errorMessage => {
     this.setState({
       showError: true,
-      error: errorMessage
+      error: errorMessage,
+      loading: false
     })
   }
 
@@ -123,11 +118,9 @@ class App extends Component {
             handleError={this.handleError}
           />
 
-          { this.state.searched && (
-            <Suspense fallback={<Spinner />} delay={2000} >
-              { this.state.loading 
-                ? <Spinner />
-                : <Weather
+          { this.state.searched && !this.state.error && (
+            <Suspense fallback={<Spinner />} >
+               <Weather
                     temperature={this.state.temperature}
                     maxtemp={this.state.maxTemp}
                     mintemp={this.state.minTemp}
@@ -140,15 +133,14 @@ class App extends Component {
                     loaded={!this.state.loading}
                     searched={this.state.searched} // @TO-DO: Apply CSSTransition on mount so this prop is not necessary 
                 />
-              }
             </Suspense>
           )}
 
           { this.state.showError && this.state.error ?
-            <Error 
-              message={this.state.error} 
-              unmountMe={this.toggleErrorVisibility}
-            /> 
+              <Error
+                message={this.state.error} 
+                unmountMe={this.toggleErrorVisibility}
+              />
             : null 
           }
 

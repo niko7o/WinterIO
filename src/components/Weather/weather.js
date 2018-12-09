@@ -14,9 +14,9 @@ const WeatherCodeIcon = ({code}) =>
 
 class Weather extends Component {
     render() {
-        return (
-            <React.Suspense delayMs={1000} fallback={<Spinner />} >
-                <div className={"Weather" + (this.props.loaded && this.props.description ? " found" : '')}>
+        return this.props.loaded 
+            ? (
+                <div className="Weather">
                     <div className="Weather__info">
                     { 
                         this.props.country && this.props.city && 
@@ -48,8 +48,8 @@ class Weather extends Component {
                     }
                     </div>
                 </div>
-            </React.Suspense>
-        )
+            )
+            : <Spinner />
     }
 }
 

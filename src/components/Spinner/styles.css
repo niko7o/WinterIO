@@ -1,4 +1,4 @@
-.Preloader {
+.Spinner {
     position: fixed;
     width: 100%;
     height: 100vh;
@@ -8,15 +8,18 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: #000000ba;
+    z-index: 2;
 }
 
-.loader {
+.Spinner > .loader {
     border: 8px solid #f3f3f3; /* Light grey */
     border-top: 8px solid var(--primary); /* Blue */
     border-radius: 50%;
     width: 60px;
     height: 60px;
     animation: spin 1.8s ease infinite;
+    z-index: 3;
 }
 
 @keyframes spin {

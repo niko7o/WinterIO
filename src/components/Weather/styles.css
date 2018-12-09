@@ -1,5 +1,4 @@
 .Weather {
-    opacity: 0;
     order: 2;
     height: 0vh;
     margin-left: 2em;
@@ -13,9 +12,6 @@
     align-items: center;
     text-align: center;
     transition: .75s ease;
-}
-
-.Weather.found {
     opacity: 1;
     height: 43vh;
 }
@@ -25,7 +21,6 @@
     margin-top: 2em;
     margin-bottom: -5em;
 }
-
 
 .Weather__info {
     width: 95%;

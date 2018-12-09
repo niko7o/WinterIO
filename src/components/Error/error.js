@@ -14,6 +14,8 @@ class Error extends Component {
         }, duration);
     }
 
+    // Apply Transitions to the Error component first to learn
+
     render() {
         return (
             <div className="Error">
