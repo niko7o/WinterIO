@@ -1,6 +1,6 @@
 .Weather {
+    position: relative;
     order: 2;
-    height: 0vh;
     margin-left: 2em;
     border-radius: 8px;
     box-sizing: border-box;
@@ -11,9 +11,9 @@
     justify-content: center;
     align-items: center;
     text-align: center;
-    transition: .75s ease;
-    opacity: 1;
     height: 43vh;
+    opacity: 1;
+    transition: .75s ease;
 }
 
 .Weather__icon {

@@ -119,7 +119,10 @@ class App extends Component {
           />
 
           { this.state.searched && !this.state.error && (
-            <Suspense fallback={<Spinner />} >
+            <Suspense 
+              fallback={<Spinner />} 
+              delayMs={1000} 
+            >
                <Weather
                     temperature={this.state.temperature}
                     maxtemp={this.state.maxTemp}
