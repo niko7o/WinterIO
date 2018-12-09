@@ -52,7 +52,7 @@ class Geolocator extends Component {
         return (
             <React.Fragment>
                 <img 
-                    src="../svg/geolocate.svg"
+                    src="svg/geolocate.svg"
                     className={"Geolocator__icon" + (this.state.requested && !this.state.loaded ? ' spin' : '')}
                     alt="Geolocate me"
                     onClick={this.getLocation}
