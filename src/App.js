@@ -7,13 +7,30 @@ import Weather from './components/Weather/weather';
 import Navbar from './components/Navbar/navbar';
 import Error from './components/Error/error';
 import Geolocator from './components/Geolocator/geolocator';
+import Spinner from './components/Spinner/spinner';
 
+// Styles & Utils
 import './styles.css';
 import * as api from './constants/apiConstants';
 
-const buildApiSearchRequestUrl = (city, country) => `${api.BASE_URL}?q=${city},${country}&appid=${api.APP_ID}&${api.OPTIONS}`;
-const buildApiGeoRequestUrl = (lat, lng) => `${api.BASE_URL}?lat=${lat}&lon=${lng}&appid=${api.APP_ID}&${api.OPTIONS}`;
-const buildForecastRequestUrl = (city, country) => `${api.BASE_URL}?q=${city},${country}&appid=${api.APP_ID}&${api.OPTIONS}`;
+const buildScalableParamsQuery = (params, type) => {
+  let query = '';
+
+  params.forEach((parameter, i) => {
+    i !== (params.length - 1)
+    ? query += `${parameter},`
+    : query += `${parameter}`
+  })
+
+  switch(type) {
+    case 'geo': 
+      return `${api.BASE_URL}?lat=${params[0]}&lon=${params[1]}&appid=${api.APP_ID}&${api.OPTIONS}`;
+    case 'forecast': 
+      return 1; //@TO-DO: forecast query when type === 'forecast'
+    default:
+      return `${api.BASE_URL}?q=${query}&appid=${api.APP_ID}&${api.OPTIONS}`;
+  }
+}
 
 class App extends Component {
   state = {
@@ -27,71 +44,41 @@ class App extends Component {
     description: undefined,
     code: undefined,
     searched: false,
-    loaded: false, // Defines preloader mounting/unmounting
-    showError: true, // For text control on Form component
+    loaded: false, // Defines spinner mounting/unmounting
+    showError: true, // for <Error> component mounting lifecycle
     error: null,
   }
 
+  componentDidCatch(err) {
+    this.setState({ error: err })
+    this.handleError(err)
+  }
+
   changeTabState = newTab => {
-    this.setState({
-      tab: newTab
+    this.setState({ 
+      tab: newTab 
     })
   }
 
-  handleFormClick = (e) => {
-    this.setState({
-      searched: true
+  handleFormClick = () => {
+    this.setState({ 
+      searched: true 
     })
   }
 
-  handleError = (errorMessage) => {
+  handleError = errorMessage => {
     this.setState({
       showError: true,
       error: errorMessage
     })
   }
 
-  getForecast = (form) => {
-    const city = form.city;
-    const country = form.country;
-    const apiForecastRequest = buildForecastRequestUrl(city, country);
-
-    if (city && country) {
-      axios.get(apiForecastRequest)
-        .then(response => {
-          const weather = response.data;
-          this.setState({
-            temperature: weather.main.temp,
-            maxTemp: weather.main.temp_max,
-            minTemp: weather.main.temp_min,
-            city: weather.name,
-            country: weather.sys.country,
-            humidity: weather.main.humidity,
-            description: weather.weather[0].description,
-            code: weather.weather[0].icon,
-            error: null,
-            showError: true,
-            loaded: true,
-            searched: true
-          })
-        })
-        .catch(err => {
-          this.handleError('Is that even a place? Try another location!');
-        })
-    } else {
-      this.handleError('Please fill both inputs before searching..');
-    }
-  }
-
-  getGeoWeather = (lat, lng) => {
-    const apiGeoRequest = buildApiGeoRequestUrl(lat, lng);
-
-    if(lat && lng) {
-      axios.get(apiGeoRequest)
+  searchWeatherBy = (params, type) => {
+    const apiRequestURL = buildScalableParamsQuery(params, type);
+    if (params) {
+      axios.get(apiRequestURL)
       .then(response => {
         const weather = response.data;
-        console.log(weather);
-        
         this.setState({
           temperature: weather.main.temp,
           maxTemp: weather.main.temp_max,
@@ -104,45 +91,13 @@ class App extends Component {
           error: null,
           showError: true,
           loaded: true,
-          searched: true,
+          searched: true
         })
-      }).catch(err => {
-        this.handleError(err);
+      }).catch((err) => {
+        this.handleError('Is that even a place? Try another location!');
       })
-    }
-  }
-
-  getWeather = (form) => {
-    const city = form.city;
-    const country = form.country;
-    const apiSearchRequest = buildApiSearchRequestUrl(city, country);
-
-    if(city && country) {
-      axios.get(apiSearchRequest)
-        .then(response => {
-          const weather = response.data;
-          this.setState({
-            temperature: weather.main.temp,
-            maxTemp: weather.main.temp_max,
-            minTemp: weather.main.temp_min,
-            city: weather.name,
-            country: weather.sys.country,
-            humidity: weather.main.humidity,
-            description: weather.weather[0].description,
-            code: weather.weather[0].icon,
-            error: null,
-            showError: true,
-            loaded: true,
-            searched: true
-          })
-          //@TO-DO: Delete this console log. Temporary to recompile codes returned form api for weather svgs
-          console.log(weather.weather[0].icon) 
-        })
-        .catch(err => {
-            this.handleError('Is that even a place? Try another location!');
-        })
     } else {
-        this.handleError('Please fill both inputs before searching..');
+      this.handleError('Please fill both inputs before searching.');
     }
   }
 
@@ -154,19 +109,19 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
+      <div className="WinterIO">
           <Geolocator 
             handleError={this.handleError}
-            getGeoWeather={this.getGeoWeather}
+            searchWeatherBy={this.searchWeatherBy}
           />
 
           <Form 
-            loadWeather={this.getWeather} 
+            searchWeatherBy={this.searchWeatherBy}
             handleFormClick={this.handleFormClick}
             handleError={this.handleError}
           />
 
-          { this.state.searched && this.state.loaded ?
+          <React.Suspense fallback={<Spinner />}>
             <Weather
               temperature={this.state.temperature}
               maxtemp={this.state.maxTemp}
@@ -180,7 +135,7 @@ class App extends Component {
               loaded={this.state.loaded}
               searched={this.state.searched} // @TO-DO: Apply CSSTransition on mount so this prop is not necessary 
             />
-          : null }
+          </React.Suspense>
 
           { this.state.showError && this.state.error ?
             <Error 

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import * as weather from '../../constants/weatherConstants';
+
 import './styles.css';
 import '../Error/error';
 

@@ -26,7 +26,9 @@ class Form extends Component {
 
     handleOnClickSubmit = (e) => {
         e.preventDefault();
-        this.props.loadWeather(this.state);
+        //this.props.loadWeather(this.state);
+        this.props.searchWeatherBy([this.state.city, this.state.country])
+        
         this.props.handleFormClick();
         this.resetForm();
     }
