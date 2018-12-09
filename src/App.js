@@ -184,9 +184,6 @@ class App extends Component {
             />
           </React.Suspense>
 
-          <Button action={this.signup} text="Sign up" />
-          <Button action={this.login} text="Login" />
-
           { this.state.showError && this.state.error ?
             <Error 
               message={this.state.error} 
