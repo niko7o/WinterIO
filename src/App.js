@@ -137,7 +137,7 @@ class App extends Component {
             loaded: true,
             searched: true
           })
-          //@TO-DO: Delete this console log. Temporary to recompile codes returned form api for weather svgs
+          //@TO-DO: Delete this console log. Temporary to recompile codes returned from api for weather svgs
           console.log(weather.weather[0].icon) 
         })
         .catch(err => {
@@ -183,6 +183,9 @@ class App extends Component {
               searched={this.state.searched} // @TO-DO: Apply CSSTransition on mount so this prop is not necessary 
             />
           </React.Suspense>
+
+          <Button action={this.signup} text="Sign up" />
+          <Button action={this.login} text="Login" />
 
           { this.state.showError && this.state.error ?
             <Error 
