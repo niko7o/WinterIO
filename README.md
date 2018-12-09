@@ -12,14 +12,14 @@ The idea is to migrate it to React Native in the near future.
 - Reusable Error Handling component for children
 - Custom Animated weather icons with Object literal
 - Sexy weather!
+- <React.Suspense>
 
 # Future Features
 
-- Jest testing & snapshots
+- Jest testing & Snapshots
+- Enzyme ?
 - CSSTransition from react-transition-group
-- <React.Suspense> for loader fallback on api fetch
 - Forecast (5 Days)
-- Manipulate user input to be sent as lowercase for api requests
 - Code splitting, dynamic imports & long term caching
 - React Native
 
