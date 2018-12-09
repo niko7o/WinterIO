@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import './styles.css';
 
-class Preloader extends Component {
+class Spinner extends Component {
     render() {
         return(
-            <div className="Preloader">
+            <div className="Spinner">
                 <div className="loader"></div>
             </div>
         );
     }
 }
 
-export default Preloader;
+export default Spinner;

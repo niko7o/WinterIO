@@ -21,7 +21,7 @@ class Geolocator extends Component {
             requested: true,
             loaded: true
         })
-        this.props.getGeoWeather(this.state.lat, this.state.lng);
+        this.props.searchWeatherBy([this.state.lat, this.state.lng], 'geo');
     }
 
     onLocateError = err => {

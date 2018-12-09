@@ -11,4 +11,6 @@ export const CODE_ICONS_SVG = {
     '50n': '../../weather_svg/mist.svg',  // mist
     '10n': '../../weather_svg/rainy.svg', // light rain
     '10d': '../../weather_svg/rainy.svg', // light rain
+    '13d': '../../weather_svg/snowy.svg', // light snow
+    '13n': '../../weather_svg/snowy.svg', // moderate snow
 }
