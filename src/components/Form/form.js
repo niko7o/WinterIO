@@ -52,7 +52,7 @@ class Form extends Component {
                     placeholder={(this.state.submitted ? 'Another city..' : 'City..')}
                     onChange={this.handleCityChange}
                     autoFocus
-                    autocomplete="off"
+                    autoComplete="off"
                 />
 
                 <input 
@@ -62,7 +62,7 @@ class Form extends Component {
                     placeholder="Country..."
                     value={this.state.country}
                     onChange={this.handleCountryChange}
-                    autocomplete="off"
+                    autoComplete="off"
                 />
 
                 <button 
