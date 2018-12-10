@@ -13,14 +13,14 @@ The idea is to migrate it to React Native in the near future.
 - Custom Animated weather icons with Object literal
 - Sexy weather!
 - <React.Suspense>
+- Code splitting, <React.Lazy> dynamic imports
 
 # Future Features
 
 - Jest testing & Snapshots
-- Enzyme ?
+- Enzyme
 - CSSTransition from react-transition-group
 - Forecast (5 Days)
-- Code splitting, dynamic imports & long term caching
 - React Native
 
 ![screen1](https://duaw26jehqd4r.cloudfront.net/items/1s3H2O450J3n0O3i0L2c/Screen%20Recording%202018-12-05%20at%2001.22%20PM.gif)
